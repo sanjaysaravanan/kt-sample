@@ -1,0 +1,47 @@
+ToDo Application
+
+
+Render --> rendering data in the memory
+
+
+Mounting ---> Modifying the memory data when needed  ( Eg: fetching all todos of a user and changing a state )
+
+// Executes for all render
+useEffect(() => {
+    setTodos(["DO Home work"])
+});
+
+// Executes only ones just after render 
+useEffect(() => {
+    setTodos(["DO Home work"]);
+}, []);
+
+
+Updating ---> Update a in-memory data that would trigger state change  ( Eg: edit or deleting a todo )
+// Executes only ones just after render 
+useEffect(() => {
+    setTodos(["DO Home work"]);
+}, [todos]);
+
+
+unmounting ---> clearing non essential things ( eg: clearing in-memory todos when move out of the page )
+useEffect(() => {
+    setTodos(["DO Home work"])
+
+    // Unmount
+    return () => {
+      setTodos([]);
+    };
+});
+
+
+// Executes only ones just after render 
+useEffect(() => {
+    
+    setTodos(["DO Home work"])
+
+    // Unmount
+    return () => {
+      setTodos([]);
+    };
+}, []);

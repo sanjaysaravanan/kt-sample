@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 function App() {
   return (
@@ -24,12 +25,19 @@ function App() {
   );
 }
 
-const FunctionComponentExample = () => {
+const FunctionComponentExample = ({ email }) => {
   const [count, setCount] = useState(0);
   const [isLiked, setLiked] = useState(false);
   const [color, setColor] = useState("#fff");
 
+  const [todos, setTodos] = useState([]);
+
   // Mounting Phase
+  /**
+   *
+   * It is phase where You load the pre-existing details that You intend to show to the user by default
+   *
+   */
   useEffect(() => {
     const interval = setInterval(() => {
       setCount(count + 1);
@@ -43,7 +51,7 @@ const FunctionComponentExample = () => {
 
   // Updating Phase
   useEffect(() => {
-    alert(`Like is ${isLiked}`);
+    // alert(`Like is ${isLiked}`);
     if (isLiked) setColor("blue");
     else setColor("#fff");
   }, [isLiked]);
@@ -59,8 +67,45 @@ const FunctionComponentExample = () => {
       <button style={{ color: color }} onClick={() => setLiked(!isLiked)}>
         Like
       </button>
+      <CustomButton variant="primary" />
     </>
   );
 };
 
+const CustomButton = ({ variant, value }) => {
+  const renderBackColor = (_variant) => {
+    switch (_variant) {
+      case "primary":
+        return "green";
+      case "secondary":
+        return "red";
+      default:
+        return "blue";
+    }
+  };
+  return (
+    <button style={{ backgroundColor: renderBackColor(variant) }}>
+      {value}
+    </button>
+  );
+};
+
+CustomButton.propTypes = {
+  variant: "primary" | "secondary",
+  value: PropTypes.string,
+};
+
+CustomButton.defaultProps = {
+  variant: "primary",
+  value: "None",
+};
+
 export default App;
+
+/**
+ *
+ *
+ * Render
+ *
+ *
+ */
