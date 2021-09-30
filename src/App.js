@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import TodoComponent from "./ReduxSample";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ const FunctionComponentExample = ({ email }) => {
         Like
       </button>
       <CustomButton variant="primary" />
+      <TodoComponent />
     </>
   );
 };
